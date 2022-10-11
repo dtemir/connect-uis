@@ -1,0 +1,50 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../../../favicon.ico">
+        <title>Signup Connect UIS</title>
+        <!-- Bootstrap core CSS -->
+        <!-- CSS only -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous">
+        <!-- Custom styles for this template -->
+        <link href="{% static '#signin.css' %}" rel="stylesheet">
+    </head>
+    <div>
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+    </div>
+    <body class="text-center">
+        <form action="" method="POST" class="form-signin">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" name="email" placeholder="email@uis.edu" class="form-control">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+            <label for="password2" class="sr-only">Password Confirmation</label>
+            <input type="password" name="password2" id="password2" class="form-control" placeholder="Password Confirmation" required>
+            <div class="checkbox mb-3">
+                <label>
+                <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">&copy; Connect UIS 2022</p>
+        </form>
+    </body>
+</html>
