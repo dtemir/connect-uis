@@ -64,7 +64,7 @@ def upload(request):
         profile = Profile.objects.get(
             user=User.objects.get(username=request.user.username)
         )
-        post = Post.objects.create(user=profile, image=image, caption=caption)
+        post = Post.objects.create(profile=profile, image=image, caption=caption)
         post.save()
 
         return redirect("/")
