@@ -27,6 +27,10 @@ Email address: admin@gmail.com
 Password: 
 Password (again):
 Superuser created successfully.
+# create a secret Django key in your local directory
+(venv) $ echo "export SECRET_KEY='$(openssl rand -hex 40)'" > .DJANGO_SECRET_KEY
+# put that key in your os environment
+(venv) $ echo source .DJANGO_SECRET_KEY
 (venv) $ python3 manage.py runserver # 0:8000 if running on a remote server
 ```
 
@@ -34,9 +38,23 @@ Head over to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) and see that every
 
 ## Model changes
 
-If you change anything in a file titled `models.py` that defines the database schema, make sure to make migrations and apply them
+If you change anything in a file titled `models.py` that defines the database schema, make sure to make migrations and apply them.
 
 ```bash
 (venv) $ python3 manage.py makemigrations
 (venv) $ python3 manage.py migrate
+```
+
+## Run Locally
+
+With the help of a WSGI application server Gunicorn, you can run the site locally.
+
+```bash
+(venv) $ gunicorn -c config/gunicorn/dev.py
+```
+
+If you end up bringing the website to production with Nginx, domain name and SSL certificate ([Certbot](https://certbot.eff.org/)), make sure to use the Gunicorn production script.
+
+```bash
+(venv) $ gunicorn -c config/gunicorn/prod.py
 ```
