@@ -59,12 +59,13 @@ def upload(request):
     """
     if request.method == "POST":
         image = request.FILES.get("image")
+        title = request.POST["title"]
         caption = request.POST["caption"]
 
         profile = Profile.objects.get(
             user=User.objects.get(username=request.user.username)
         )
-        post = Post.objects.create(profile=profile, image=image, caption=caption)
+        post = Post.objects.create(profile=profile, image=image, title=title, caption=caption)
         post.save()
 
         return redirect("/")
@@ -214,7 +215,7 @@ def signup(request):
                 profile = Profile.objects.create(user=user)
                 profile.save()
 
-                return redirect("settings")
+                return redirect("/")
         else:
             messages.info(requests, "Passwords don't match")
             return redirect("signup")

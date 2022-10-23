@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 import uuid
-from datetime import datetime
+from django.utils import timezone
 
 
 User = get_user_model()
@@ -24,8 +24,9 @@ class Post(models.Model):
     id_post = models.UUIDField(primary_key=True, default=uuid.uuid4)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="post_images")
+    title = models.TextField(blank=True)
     caption = models.TextField(blank=True)
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(default=timezone.now)
     upvotes = models.IntegerField(default=0)
 
     def __str__(self):
