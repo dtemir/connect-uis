@@ -6,7 +6,7 @@ venv/
 db.sqlite3
 
 # Django secret key for production
-.DJANGO_SECRET_KEY
+.env
 
 # Compiled class file
 *.class
