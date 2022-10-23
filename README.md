@@ -38,7 +38,7 @@ Head over to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) and see that every
 
 ## Model changes
 
-If you change anything in a file titled `models.py` that defines the database schema, make sure to make migrations and apply them
+If you change anything in a file titled `models.py` that defines the database schema, make sure to make migrations and apply them.
 
 ```bash
 (venv) $ python3 manage.py makemigrations
@@ -50,5 +50,11 @@ If you change anything in a file titled `models.py` that defines the database sc
 With the help of a WSGI application server Gunicorn, you can run the site locally.
 
 ```bash
-(venv) $ gunicorn connect_uis.wsgi
+(venv) $ gunicorn -c config/gunicorn/dev.py
+```
+
+If you end up bringing the website to production with Nginx, domain name and SSL certificate ([Certbot](https://certbot.eff.org/)), make sure to use the Gunicorn production script.
+
+```bash
+(venv) $ gunicorn -c config/gunicorn/prod.py
 ```
