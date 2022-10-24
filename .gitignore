@@ -8,6 +8,9 @@ db.sqlite3
 # Django secret key for production
 .env
 
+# Media directory for storing photos locally
+media/
+
 # Compiled class file
 *.class
 
