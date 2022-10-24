@@ -17,8 +17,9 @@ def index(request):
     user_profile = Profile.objects.get(user=user)
 
     posts = Post.objects.all()
+    user_profiles = Profile.objects.all()
 
-    return render(request, "index.html", {"user_profile": user_profile, "posts": posts})
+    return render(request, "index.html", {"user_profile": user_profile, "posts": posts, "user_profiles": user_profiles})
 
 
 @login_required(login_url="signin")
@@ -80,18 +81,22 @@ def upvote(request):
     * Increase upvote counter
     * Decrease upvote counter
     """
-    username = request.user.username
+    profile = Profile.objects.get(
+            user=User.objects.get(username=request.user.username)
+        )
     post_id = request.GET.get("post_id")
 
-    post = Post.objects.get(id=post_id)
+    print("POST ID", post_id)
+
+    post = Post.objects.get(post_id=post_id)
 
     # Check if the current user has already upvoted the post before
-    upvote_filter = UpvotePost.objects.filter(post_id=post_id, user=username).first()
+    upvote_filter = UpvotePost.objects.filter(post=post, profile=profile).first()
 
     # The user didn't upvote the post before
     if upvote_filter == None:
         # Create a new upvote
-        upvote = UpvotePost.objects.create(post_id=post_id, user=username)
+        upvote = UpvotePost.objects.create(post=post, profile=profile)
         upvote.save()
 
         # Register an upvote
@@ -164,9 +169,6 @@ def profile(request, pk):
 
     followers = len(Follow.objects.filter(followed=pk))
     following = len(Follow.objects.filter(follower=pk))
-
-    print("USER", user)
-    print("USER PROFILE", profile)
 
     context = {
         "user": user,

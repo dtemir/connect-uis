@@ -21,7 +21,7 @@ class Profile(models.Model):
 
 
 class Post(models.Model):
-    id_post = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    post_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="post_images")
     title = models.TextField(blank=True)
@@ -34,7 +34,7 @@ class Post(models.Model):
 
 
 class UpvotePost(models.Model):
-    post_id = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
