@@ -23,9 +23,9 @@
                     <img class="rounded-circle" src="{{ user_profile.profileimg.url }}" width="75" height="75">
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="/profile/{{ user_profile }}">Profile</a></li>
                     <li><a class="dropdown-item" href="#">Chat</a></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -84,7 +84,7 @@
                                                 {% elif post.upvotes == 1 %}
                                                 1 upvote
                                                 {% else %}
-                                                {{ post.upvotes }}
+                                                {{ post.upvotes }} upvotes
                                                 {% endif %}
                                             </a>
                                             
