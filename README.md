@@ -58,3 +58,13 @@ If you end up bringing the website to production with Nginx, domain name and SSL
 ```bash
 (venv) $ gunicorn -c config/gunicorn/prod.py
 ```
+
+## Visualize System
+
+If you would like to do show the whole system at play just like in the followshing screenshot, run this command.
+
+```bash
+(venv) $ ./manage.py graph_models blog --pygraphviz -a -g -o blog_visualized.png
+```
+
+![UIS Connect's System Visualized in a Graph](uis-connect-visualized.png)
