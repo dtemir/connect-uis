@@ -148,3 +148,8 @@ SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # Based on https://stackoverflow.com/questions/70285834/forbidden-403-csrf-verification-failed-request-aborted-reason-given-for-fail
 CSRF_TRUSTED_ORIGINS = ['https://connect-uis.tech']
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
