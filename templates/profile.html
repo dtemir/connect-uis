@@ -33,6 +33,9 @@
     <div class="container py-4 py-xl-5" style="border-color: rgb(255,255,255);">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <img class="rounded-circle" src="{{ user_profile.profileimg.url }}" width="100" height="100">
+                </br>
+                </br>
                 <form action="/follow" method="POST">
 					{% csrf_token %}
 					
