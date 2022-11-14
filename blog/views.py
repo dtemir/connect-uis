@@ -31,24 +31,30 @@ def settings(request):
     * change location
     """
     user_profile = Profile.objects.get(user=request.user)
+    user = User.objects.get(username=request.user.username)
 
     if request.method == "POST":
 
-        image = (
+        # update profile image if given
+        user_profile.profileimg = (
             request.FILES.get("image")
             if request.FILES.get("image") is not None
             else user_profile.profileimg
         )
 
-        bio = request.POST["bio"]
-        location = request.POST["location"]
+        # update user first and last name
+        user.first_name = request.POST["first_name"]
+        user.last_name = request.POST["last_name"]
 
-        user_profile.profileimg = image
-        user_profile.bio = bio
-        user_profile.location = location
+
+        # update profile bio and location
+        user_profile.bio = request.POST["bio"]
+        user_profile.location = request.POST["location"]
+
         user_profile.save()
+        user.save()
 
-    return render(request, "settings.html", {"user_profile": user_profile})
+    return render(request, "settings.html", {"user_profile": user_profile, "user": user, "bio": user_profile.bio, "location": user_profile.location})
 
 
 @login_required(login_url="signin")
@@ -186,9 +192,11 @@ def profile(request, pk):
 def signup(request):
     """
     Allows the user to sign up to use the site
-    * Provide username, email, password
+    * Provide first name, last name, username, email, password
     """
     if request.method == "POST":
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
         username = request.POST["username"]
         email = request.POST["email"]
         password = request.POST["password"]
@@ -205,7 +213,7 @@ def signup(request):
                 return redirect("signup")
             else:
                 user = User.objects.create_user(
-                    username=username, email=email, password=password
+                    username=username, email=email, password=password, first_name=first_name, last_name=last_name
                 )
                 user.save()
 
