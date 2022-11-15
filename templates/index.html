@@ -69,9 +69,11 @@
                                 <div class="row no-gutters">
                                     <div class="col col-9">
                                         <div class="d-flex">
-                                            <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ post.profile.profileimg.url }}">
+                                            <a style="text-decoration: none; color: inherit;" href="/profile/{{ post.profile }}">
+                                                <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ post.profile.profileimg.url }}">
+                                            </a>
                                             <div>
-                                                <p class="fw-bold mb-0">{{ post.profile }}</p>
+                                                <p class="fw-bold mb-0"><a style="text-decoration: none; color: inherit;" href="/profile/{{ post.profile }}">{{ post.profile.user.first_name }} {{ post.profile.user.last_name }}</a></p>
                                                 <p class="text-muted mb-0">{{ post.profile.bio }}</p>
                                             </div>
                                         </div>
@@ -80,11 +82,11 @@
                                         <div class="float-end">
                                             <a class="btn btn-light float-end" href="/upvote?post_id={{ post.post_id }}">
                                                 {% if post.upvotes == 0 %}
-                                                No upvotes
+                                                    No upvotes
                                                 {% elif post.upvotes == 1 %}
-                                                1 upvote
+                                                    1 upvote
                                                 {% else %}
-                                                {{ post.upvotes }} upvotes
+                                                    {{ post.upvotes }} upvotes
                                                 {% endif %}
                                             </a>
                                             
