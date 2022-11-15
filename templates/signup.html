@@ -15,16 +15,12 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-md py-3" style="background: #465358;">
-        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-6"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid">
             <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="navbar-brand d-flex align-items-center" href="#"><span>Connect UIS</span></a></li>
-                    <li class="nav-item"></li>
-                </ul>
                 <div class="d-md-none my-2"><button class="btn btn-light me-2" type="button">Button</button><button class="btn btn-primary" type="button">Button</button></div>
             </div>
             <picture><img class="" src="{% static 'img/logo.png' %}" height="50"></picture>
-            <div class="d-none d-md-block"><a class="btn btn-primary" role="button" href="#" style="border-color: #c8b18b;background: #c8b18b;color: rgb(255,255,255);">Log Out</a></div>
+            <div class="d-none d-md-block"></div>
         </div>
     </nav>
     <section class="position-relative py-4 py-xl-5">
@@ -44,12 +40,13 @@
                                 </svg></div>
                             <form class="text-center" action="" method="POST">
                                 {% csrf_token %}
-                                <div class="mb-3"><input class="form-control" type="text" placeholder="Full Name" name="username" id="username"></div>
-                                <div class="mb-3"><input class="form-control" type="email" placeholder="Email @uis.edu" name="email" id="email"></div>
-                                <div class="mb-3"><input class="form-control" type="password" placeholder="Password" name="password" id="password"></div>
-                                <div class="mb-3"><input class="form-control" type="password" placeholder="Password Confirmation" name="password2" id="password2"></div>
+                                <div class="mb-3"><input class="form-control" type="text" placeholder="First Name" name="first_name" id="first_name" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" placeholder="Last Name" name="last_name" id="last_name" required></div>
+                                <div class="mb-3"><input class="form-control" type="email" placeholder="uin@uis.edu" name="email" id="email" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" placeholder="UIN" name="username" id="username" disabled></div>
+                                <div class="mb-3"><input class="form-control" type="password" placeholder="Password" name="password" id="password" required></div>
+                                <div class="mb-3"><input class="form-control" type="password" placeholder="Password Confirmation" name="password2" id="password2" required></div>
                                 <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="background: #c8b18b;border-color: #c8b18b;">Sign up</button></div>
-                                <p class="text-muted">Forgot your password?</p>
                             </form>
                         </div>
                     </div>
@@ -78,7 +75,22 @@
             <p class="mb-0">Built with ❤️ by UIS students</p>
         </div>
     </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script>
+        var email = document.getElementById("email");
+        email.onchange = function() {
+            var args = email.value.toLowerCase().split("@");
+            var uin = args[0];
+            var domain = args[1];
+            console.log(domain);
+            if (domain != "uis.edu") {
+                alert("Please provide a valie uis-issued email address");
+                email.focus;
+            }
+            document.getElementById("username").value = uin;
+        }
+    
+    </script>
 </body>
 
 </html>

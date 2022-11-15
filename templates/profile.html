@@ -23,9 +23,9 @@
                     <img class="rounded-circle" src="{{ user_profile.profileimg.url }}" width="75" height="75">
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="/profile/{{ user_profile }}">Profile</a></li>
                     <li><a class="dropdown-item" href="#">Chat</a></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -33,23 +33,26 @@
     <div class="container py-4 py-xl-5" style="border-color: rgb(255,255,255);">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <img class="rounded-circle" src="{{ user_profile.profileimg.url }}" width="100" height="100">
+                </br>
+                </br>
+                <hr class="mx-auto">
                 <form action="/follow" method="POST">
 					{% csrf_token %}
 					
 					{% if user_num_posts == 0 %}
-					<h2>No Post</h2>
+					    <h2>No Post</h2>
 					{% elif user_num_posts == 1 %}
-					<h2>{{user_num_posts}} Post</h2>
+					    <h2>{{user_num_posts}} Post</h2>
 					{% else %}
-					<h2>{{user_num_posts}} Posts</h2>
+					    <h2>{{user_num_posts}} Posts</h2>
 					{% endif %}
 
 					{% if user_followers == 0 or user_followers == 1 %}
-					<h2>{{user_followers}} follower</h2>
+					    <h2>{{user_followers}} follower</h2>
 					{% else %}
-					<h2>{{user_followers}} followers</h2>
+					    <h2>{{user_followers}} followers</h2>
 					{% endif %}
-
 
 					<h2>{{user_following}} following</h2>
 
@@ -57,20 +60,19 @@
 					<input type="hidden" value="{{ user_profile }}" name="followed" />
 
 					{% if user_profile.user.username == user.username %}
-					<a class="btn btn-light" href="/settings">Settings</a>
+					    <a class="btn btn-primary d-grid" style="color: #ffffff;background: #c8b18b;width: 100%;border-color: #c8b18b;" href="/settings">Settings</a>
 					{% else %}
-					<a data-ripple=""><button type="submit" style="background-color: #ffc0cb; border: #ffc0cb;">{{button_text}}</button></a>
+                        <button class="btn btn-primary d-grid" type="submit" style="color: #ffffff;background: #c8b18b;width: 100%;border-color: #c8b18b;">Follow</button>
 					{% endif %}
-
-					</div>
 				</form>
+                <hr class="mx-auto">
             </div>
         </div>
     </div>
     <div class="container gx-4 x-">
         <div class="row">
             {% for post in user_posts reversed %}
-            <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <div class="col col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                 <div class="card">
                     {% if post.image %}
                         <img class="card-img-top w-100 d-block fit-cover" src="{{ post.image.url }}">
@@ -93,14 +95,13 @@
                                 <div class="float-end">
                                     <a class="btn btn-light float-end" href="#">
                                         {% if post.upvotes == 0 %}
-                                        No upvotes
+                                            No upvotes
                                         {% elif post.upvotes == 1 %}
-                                        1 upvote
+                                            1 upvote
                                         {% else %}
-                                        {{ post.upvotes }}
+                                            {{ post.upvotes }} upvotes
                                         {% endif %}
                                     </a>
-                                    
                                 </div>
                             </div>
                         </div>

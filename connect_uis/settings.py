@@ -31,7 +31,7 @@ except KeyError as e:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["150.136.57.17", "127.0.0.1", "connect-uis.tech"]
+ALLOWED_HOSTS = ["150.136.57.17", "127.0.0.1", "connect-uis.tech", "www.connect-uis.tech"]
 
 
 # Application definition

@@ -23,9 +23,9 @@
                     <img class="rounded-circle" src="{{ user_profile.profileimg.url }}" width="75" height="75">
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="/profile/{{ user_profile }}">Profile</a></li>
                     <li><a class="dropdown-item" href="#">Chat</a></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -69,9 +69,11 @@
                                 <div class="row no-gutters">
                                     <div class="col col-9">
                                         <div class="d-flex">
-                                            <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ post.profile.profileimg.url }}">
+                                            <a style="text-decoration: none; color: inherit;" href="/profile/{{ post.profile }}">
+                                                <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ post.profile.profileimg.url }}">
+                                            </a>
                                             <div>
-                                                <p class="fw-bold mb-0">{{ post.profile }}</p>
+                                                <p class="fw-bold mb-0"><a style="text-decoration: none; color: inherit;" href="/profile/{{ post.profile }}">{{ post.profile.user.first_name }} {{ post.profile.user.last_name }}</a></p>
                                                 <p class="text-muted mb-0">{{ post.profile.bio }}</p>
                                             </div>
                                         </div>
@@ -80,11 +82,11 @@
                                         <div class="float-end">
                                             <a class="btn btn-light float-end" href="/upvote?post_id={{ post.post_id }}">
                                                 {% if post.upvotes == 0 %}
-                                                No upvotes
+                                                    No upvotes
                                                 {% elif post.upvotes == 1 %}
-                                                1 upvote
+                                                    1 upvote
                                                 {% else %}
-                                                {{ post.upvotes }}
+                                                    {{ post.upvotes }} upvotes
                                                 {% endif %}
                                             </a>
                                             
@@ -100,9 +102,9 @@
             <div class="col-md-3 col-lg-3 col-xl-3 col-xxl-3 offset-md-0 offset-lg-0 offset-xl-0">
                 <h3>People You Might Know</h3>
                 {% for user_profile in user_profiles %}
-                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ user_profile.profileimg.url }}">
+                <div class="d-flex"><a style="text-decoration: none; color: inherit;" href="/profile/{{ user_profile }}"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ user_profile.profileimg.url }}"></a>
                     <div>
-                        <p class="fw-bold mb-0">{{ user_profile.user }}</p>
+                        <p class="fw-bold mb-0"><a style="text-decoration: none; color: inherit;" href="/profile/{{ user_profile }}">{{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</a></p>
                         <p class="text-muted mb-0">{{ user_profile.bio }}</p>
                     </div>
                 </div>
