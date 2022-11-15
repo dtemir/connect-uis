@@ -44,7 +44,7 @@
                             <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" style="color: var(--bs-blue);background: #c8b18b;">
                                 <img class="rounded-circle" src="{{ user_profile.profileimg.url }}" width="100" height="100">
                             </div>
-                            <form class="text-center" action="" method="POST">
+                            <form class="text-center" action="" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="mb-3"><input class="form-control form-control-sm" type="file" name="image" id="image"></div>
                                 
@@ -98,7 +98,7 @@
             <p class="mb-0">Built with ❤️ by UIS students</p>
         </div>
     </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 
 </html>
