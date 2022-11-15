@@ -92,8 +92,6 @@ def upvote(request):
         )
     post_id = request.GET.get("post_id")
 
-    print("POST ID", post_id)
-
     post = Post.objects.get(post_id=post_id)
 
     # Check if the current user has already upvoted the post before
@@ -227,7 +225,7 @@ def signup(request):
 
                 return redirect("/")
         else:
-            messages.info(requests, "Passwords don't match")
+            messages.info(request, "Passwords don't match")
             return redirect("signup")
 
     else:
