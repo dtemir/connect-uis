@@ -59,6 +59,20 @@ If you end up bringing the website to production with Nginx, domain name and SSL
 (venv) $ gunicorn -c config/gunicorn/prod.py
 ```
 
+
+## Setup Twillio and SendGrid Integration
+
+Please reference the following documentation on [Send Email Verifications with Verify and Twilio SendGrid](https://www.twilio.com/docs/verify/email?code-sample=code-start-a-verification-with-email&code-language=Python&code-sdk-version=7.x)
+
+You will need to create an `.env` file in `blog/` directory and specify the following
+```bash
+export ACCOUNT_SID='ACXXXXXXXXXXXXXXXXXXXX'
+export AUTH_TOKEN='bdXXXXXXXXXXXXXXXXXXXX'
+export VERIFY_SERVICES='VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+```
+
+![Email Showing Verification Code to Register](email-verification.png)
+
 ## Visualize System
 
 If you would like to do show the whole system at play just like in the followshing screenshot, run this command.
