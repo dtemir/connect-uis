@@ -12,7 +12,7 @@ Create a Python virtual environment to keep your global libaries clean.
 ```bash
 $ python3 -m venv venv
 $ source ./venv/bin/activate
-(venv) $ python3 -m pip install requirements.txt
+(venv) $ python3 -m pip install -r requirements.txt
 ```
 
 ## Setup Database
