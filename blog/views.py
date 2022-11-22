@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Profile, Post, UpvotePost, Follow
 
+from .email_verification import send_verification, check_verification
 
 @login_required(login_url="signin")
 def index(request):
@@ -187,36 +188,71 @@ def profile(request, pk):
     return render(request, "profile.html", context)
 
 
+def verify(request):
+    """
+    Verify that the UIS email provided is working
+    by sending a Twillio & SendGrid API verification code
+    """
+    print(request.POST)
+    if "code" in request.POST:
+        code = request.POST["code"]
+        decision = check_verification(code)
+        print(decision)
+    else:
+        email = request.POST["email"]
+        send_verification(email)
+        return redirect("verify")
+
+data = {}   
 def signup(request):
     """
     Allows the user to sign up to use the site
     * Provide first name, last name, username, email, password
     """
-    if request.method == "POST":
-        first_name = request.POST["first_name"]
-        last_name = request.POST["last_name"]
-        username = request.POST["username"]
-        email = request.POST["email"]
-        password = request.POST["password"]
-        password2 = request.POST["password2"]
 
-        if password == password2:
-            # Email was already used to register
-            if User.objects.filter(email=email).exists():
-                messages.info(request, "Email taken")
-                return redirect("signup")
-            # Username was already used to register
-            elif User.objects.filter(username=username).exists():
-                messages.info(request, "Username taken")
-                return redirect("signup")
+    if request.method == "POST":
+
+        if "first_name" in request.POST:
+            first_name = request.POST["first_name"]
+            last_name = request.POST["last_name"]
+            username = request.POST["username"]
+            email = request.POST["email"]
+            password = request.POST["password"]
+            password2 = request.POST["password2"]
+
+            if password == password2:
+                # Email was already used to register
+                if User.objects.filter(email=email).exists():
+                    messages.info(request, "Email taken")
+                    return redirect("signup")
+                # Username was already used to register
+                elif User.objects.filter(username=username).exists():
+                    messages.info(request, "Username taken")
+                    return redirect("signup")
+                else:
+                    data["first_name"] = first_name
+                    data["last_name"] = last_name
+                    data["username"] = username
+                    data["email"] = email
+                    data["password"] = password
+
+                    send_verification(email)
+                    return render(request, "verify.html")
             else:
+                messages.info(request, "Passwords don't match")
+                return redirect("signup")
+        
+        elif "code" in request.POST:
+            code = request.POST["code"]
+            decision = check_verification(data["email"], code)
+
+            if decision:
                 user = User.objects.create_user(
-                    username=username, email=email, password=password, first_name=first_name, last_name=last_name
+                    username=data["username"], email=data["email"], password=data["password"], first_name=data["first_name"], last_name=data["last_name"]
                 )
                 user.save()
-
                 # Log in the user and setting to settings
-                user_login = auth.authenticate(username=username, password=password)
+                user_login = auth.authenticate(username=data["username"], password=data["password"])
                 auth.login(request, user_login)
 
                 # Create a Profile object
@@ -224,9 +260,8 @@ def signup(request):
                 profile.save()
 
                 return redirect("/")
-        else:
-            messages.info(request, "Passwords don't match")
-            return redirect("signup")
+            else:
+                return render(request, "verify.html")
 
     else:
         return render(request, "signup.html")
