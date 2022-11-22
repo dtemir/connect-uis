@@ -38,7 +38,7 @@ class UpvotePost(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.username
+        return self.profile.user.username
 
 
 class Follow(models.Model):
