@@ -42,8 +42,8 @@
                                 {% csrf_token %}
                                 <div class="mb-3"><input class="form-control" type="text" placeholder="First Name" name="first_name" id="first_name" required></div>
                                 <div class="mb-3"><input class="form-control" type="text" placeholder="Last Name" name="last_name" id="last_name" required></div>
-                                <div class="mb-3"><input class="form-control" type="email" placeholder="uin@uis.edu" name="email" id="email" required></div>
-                                <div class="mb-3"><input class="form-control" type="text" placeholder="UIN" name="username" id="username" disabled></div>
+                                <div class="mb-3"><input class="form-control" type="email" placeholder="NetID@uis.edu" name="email" id="email" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" placeholder="NetID" name="username" id="username" readonly="readonly"></div>
                                 <div class="mb-3"><input class="form-control" type="password" placeholder="Password" name="password" id="password" required></div>
                                 <div class="mb-3"><input class="form-control" type="password" placeholder="Password Confirmation" name="password2" id="password2" required></div>
                                 <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="background: #c8b18b;border-color: #c8b18b;">Sign up</button></div>
@@ -80,14 +80,14 @@
         var email = document.getElementById("email");
         email.onchange = function() {
             var args = email.value.toLowerCase().split("@");
-            var uin = args[0];
+            var netid = args[0];
             var domain = args[1];
             console.log(domain);
             if (domain != "uis.edu") {
                 alert("Please provide a valie uis-issued email address");
                 email.focus;
             }
-            document.getElementById("username").value = uin;
+            document.getElementById("username").value = netid;
         }
     
     </script>
