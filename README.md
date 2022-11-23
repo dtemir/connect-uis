@@ -71,14 +71,14 @@ export AUTH_TOKEN='bdXXXXXXXXXXXXXXXXXXXX'
 export VERIFY_SERVICES='VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 ```
 
-![Email Showing Verification Code to Register](email-verification.png)
+![Email Showing Verification Code to Register](docs/email-verification.png)
 
 ## Visualize System
 
-If you would like to do show the whole system at play just like in the followshing screenshot, run this command.
+If you would like to do show the interaction between models you created, run this command.
 
 ```bash
-(venv) $ ./manage.py graph_models blog --pygraphviz -a -g -o blog_visualized.png
+(venv) $ ./manage.py graph_models -a -I Profile,Post,UpvotePost,Follow -o blog-graph.png
 ```
 
-![UIS Connect's System Visualized in a Graph](uis-connect-visualized.png)
+![UIS Connect's System Visualized in a Graph](docs/blog-graph.png)
