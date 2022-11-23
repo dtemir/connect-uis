@@ -20,6 +20,8 @@ $ source ./venv/bin/activate
 Setup a SQLite database for Django and create an admin user.
 
 ```bash
+# create a secret Django key in your local directory
+(venv) $ echo "export SECRET_KEY='$(openssl rand -hex 40)'" > .env
 (venv) $ python3 manage.py migrate
 (venv) $ python3 manage.py createsuperuser
 Username: admin
@@ -27,10 +29,6 @@ Email address: admin@gmail.com
 Password: 
 Password (again):
 Superuser created successfully.
-# create a secret Django key in your local directory
-(venv) $ echo "export SECRET_KEY='$(openssl rand -hex 40)'" > .DJANGO_SECRET_KEY
-# put that key in your os environment
-(venv) $ echo source .DJANGO_SECRET_KEY
 (venv) $ python3 manage.py runserver # 0:8000 if running on a remote server
 ```
 
