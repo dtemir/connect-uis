@@ -24,7 +24,6 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="/profile/{{ user_profile }}">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Chat</a></li>
                     <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                 </ul>
             </div>
@@ -37,24 +36,32 @@
                 </br>
                 </br>
                 <hr class="mx-auto">
+                <h2>{{user_profile.user.first_name}} {{user_profile.user.last_name}}</h2>
+                {% if user_profile.bio %}
+                    <p>{{user_profile.bio}}</p>
+                {% endif %}
+
+                {% if user_profile.location %}
+                    <p>{{user_profile.location}}</p>
+                {% endif %}
                 <form action="/follow" method="POST">
 					{% csrf_token %}
 					
 					{% if user_num_posts == 0 %}
-					    <h2>No Post</h2>
+					    <h3>No Post</h3>
 					{% elif user_num_posts == 1 %}
-					    <h2>{{user_num_posts}} Post</h2>
+					    <h3>{{user_num_posts}} Post</h3>
 					{% else %}
-					    <h2>{{user_num_posts}} Posts</h2>
+					    <h3>{{user_num_posts}} Posts</h3>
 					{% endif %}
 
 					{% if user_followers == 0 or user_followers == 1 %}
-					    <h2>{{user_followers}} follower</h2>
+					    <h3>{{user_followers}} follower</h3>
 					{% else %}
-					    <h2>{{user_followers}} followers</h2>
+					    <h3>{{user_followers}} followers</h3>
 					{% endif %}
 
-					<h2>{{user_following}} following</h2>
+					<h3>{{user_following}} following</h3>
 
 					<input type="hidden" value="{{ user }}" name="follower" />
 					<input type="hidden" value="{{ user_profile }}" name="followed" />
