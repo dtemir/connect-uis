@@ -20,7 +20,7 @@
             
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="rounded-circle" src="{{ user_profile.profileimg.url }}" width="75" height="75">
+                    <img class="rounded-circle" src="{{ viewer_profile.profileimg.url }}" width="75" height="75">
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="/profile/{{ user_profile }}">Profile</a></li>
@@ -93,7 +93,7 @@
                                 <div class="d-flex">
                                     <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ post.profile.profileimg.url }}">
                                     <div>
-                                        <p class="fw-bold mb-0">{{ post.profile }}</p>
+                                        <p class="fw-bold mb-0">{{ post.profile.user.first_name }} {{ post.profile.user.last_name }}</p>
                                         <p class="text-muted mb-0">{{ post.profile.bio }}</p>
                                     </div>
                                 </div>

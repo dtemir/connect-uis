@@ -161,7 +161,10 @@ def profile(request, pk):
     * Show number of followed
     """
     # User who is currently viewing the profile page
+    viewer_profile = Profile.objects.get(user=User.objects.get(username=request.user))
+
     user = request.user
+
     # Current profile whose page is being viewed
     profile = Profile.objects.get(user=User.objects.get(username=pk))
 
@@ -176,7 +179,7 @@ def profile(request, pk):
     following = len(Follow.objects.filter(follower=pk))
 
     context = {
-        "user": user,
+        "viewer_profile": viewer_profile,
         "user_profile": profile,
         "user_posts": user_posts,
         "user_num_posts": len(user_posts),
