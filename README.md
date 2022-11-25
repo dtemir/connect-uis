@@ -76,7 +76,7 @@ export VERIFY_SERVICES='VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 If you would like to do show the interaction between models you created, run this command.
 
 ```bash
-(venv) $ ./manage.py graph_models -a -I Profile,Post,UpvotePost,Follow -o blog-graph.png
+(venv) $ ./manage.py graph_models -a -I Profile,Post,UpvotePost,Follow,User -o blog-graph.png
 ```
 
 ![UIS Connect's System Visualized in a Graph](docs/blog-graph.png)
