@@ -31,11 +31,14 @@ def check_verification(email, code):
     """
     Confirms if the verification code is correct
     """
-    verification_check = client.verify \
+    try:
+        verification_check = client.verify \
                         .v2 \
                         .services(str(verify_services)) \
                         .verification_checks \
                         .create(to=str(email), code=str(code))
+        is_approved = verification_check.status == 'approved'
+    except:
+        is_approved = False
     
-    is_approved = verification_check.status == 'approved'
     return is_approved

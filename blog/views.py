@@ -191,21 +191,6 @@ def profile(request, pk):
     return render(request, "profile.html", context)
 
 
-def verify(request):
-    """
-    Verify that the UIS email provided is working
-    by sending a Twillio & SendGrid API verification code
-    """
-    print(request.POST)
-    if "code" in request.POST:
-        code = request.POST["code"]
-        decision = check_verification(code)
-        print(decision)
-    else:
-        email = request.POST["email"]
-        send_verification(email)
-        return redirect("verify")
-
 data = {}   
 def signup(request):
     """
@@ -264,6 +249,7 @@ def signup(request):
 
                 return redirect("/")
             else:
+                messages.info(request, "Incorrect verification code")
                 return render(request, "verify.html")
 
     else:
