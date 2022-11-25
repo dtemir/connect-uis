@@ -213,10 +213,6 @@ def signup(request):
                 if User.objects.filter(email=email).exists():
                     messages.info(request, "Email taken")
                     return redirect("signup")
-                # Username was already used to register
-                elif User.objects.filter(username=username).exists():
-                    messages.info(request, "Username taken")
-                    return redirect("signup")
                 else:
                     data["first_name"] = first_name
                     data["last_name"] = last_name
