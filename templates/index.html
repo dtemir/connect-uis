@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -11,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/Articles-Cards-images.css' %}">
     <link rel="stylesheet" href="{% static 'css/Navbar-Centered-Brand-Dark-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 
 <body class="mx-auto">
@@ -30,38 +30,38 @@
         </div>
     </nav>
     <div class="container py-4 py-xl-5" style="border-color: rgb(255,255,255);">
-        <div class="row mb-5">
+        <div class="row">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2>Connect UIS</h2>
-                <p class="w-lg-50">This is a public forum for the University of Illinois Springfield students to discuss college-related activities.</p>
+                <h2 class="text-on-bg" style="margin-bottom: 0px;">Connect UIS</h2>
+                <img src="../static/img/logo.png" width="104" height="58">
+                <p class="w-lg-50" style="color: white; text-shadow: 0px 2px black; font-weight: 600; font-size: 18px">This is a public forum for the University of Illinois Springfield students to discuss college-related activities.</p>
             </div>
         </div>
-        <hr class="mx-auto">
         <div class="row mb-5">
-            <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <div class="col-md-8 col-xl-6 text-center mx-auto uis-card" style=" padding: 24px 64px 48px 64px; ">
                 <h3>Share Your Thoughts</h3>
                 <form action="upload" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input class="form-control" type="text" placeholder="Title" name="title" id="title">
                     <textarea class="form-control" style="margin-top: 10px" placeholder="Description" name="caption" id="caption"></textarea>
                     <input class="form-control form-control-sm" type="file" style="margin-top: 10px" name="image">
-                    <button class="btn btn-primary d-grid" type="submit" style="display: none;color: #ffffff;margin: 0px;margin-top: 10px;background: #c8b18b;width: 100%;border-color: #c8b18b;">Post</button>
+                    <button class="btn btn-primary d-grid uis-btn" type="submit">Post</button>
                 </form>
             </div>
         </div>
         <hr>
     </div>
     <div class="container gx-4 x-">
-        <div class="row">
-            <div class="col-md-9 col-lg-9 col-xl-9 col-xxl-9">
+        <div class="row" style="justify-content: space-around">
+            <div class="col-md-8 col-lg-8 col-xl-8 col-xxl-8">
                 <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
                     {% for post in posts reversed %}
                     <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                        <div class="card">
+                        <div class="card uis-card">
                             {% if post.image %}
                                 <img class="card-img-top w-100 d-block fit-cover" src="{{ post.image.url }}">
                             {% endif %}
-                            <div class="card-body p-4">
+                            <div class="card-body p-4"  style="font-family: 'Raleway', sans-serif;">
                                 <p class="text-primary card-text mb-0"></p>
                                 <h4 class="card-title">{{ post.title }}</h4>
                                 <p class="card-text" style="font-family: adobe-garamond-pro;">{{ post.caption }}</p>
@@ -73,7 +73,7 @@
                                             </a>
                                             <div>
                                                 <p class="fw-bold mb-0"><a style="text-decoration: none; color: inherit;" href="/profile/{{ post.profile }}">{{ post.profile.user.first_name }} {{ post.profile.user.last_name }}</a></p>
-                                                <p class="text-muted mb-0">{{ post.profile.bio }}</p>
+                                                <p class="text-muted-white mb-0">{{ post.profile.bio }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -98,22 +98,22 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-xl-3 col-xxl-3 offset-md-0 offset-lg-0 offset-xl-0">
-                <h3>People You Might Know</h3>
+            <div class="col-md-3 col-lg-3 col-xl-3 col-xxl-3 offset-md-0 offset-lg-0 offset-xl-0 uis-card" style="padding: 16px">
+                <h3>People You May Know</h3>
                 {% for user_profile in user_profiles %}
-                <div class="d-flex"><a style="text-decoration: none; color: inherit;" href="/profile/{{ user_profile }}"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ user_profile.profileimg.url }}"></a>
+                <div class="d-flex" style="align-items: center"><a style="text-decoration: none; color: inherit;" href="/profile/{{ user_profile }}"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ user_profile.profileimg.url }}"></a>
                     <div>
                         <p class="fw-bold mb-0"><a style="text-decoration: none; color: inherit;" href="/profile/{{ user_profile }}">{{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</a></p>
-                        <p class="text-muted mb-0">{{ user_profile.bio }}</p>
+                        <p class="text-muted-white mb-0">{{ user_profile.bio }}</p>
                     </div>
                 </div>
-                </br>
+                <hr style="width: 80%; margin: auto; margin-top: 8px; margin-bottom: 8px;">
                 {% endfor %}
             </div>
         </div>
     </div>
-    <footer class="text-center">
-        <div class="container text-muted py-4 py-lg-5">
+    <footer class="text-center" style="background-color: white; margin-top: 64px;">
+        <div class="container text-muted-white py-4 py-lg-5">
             <ul class="list-inline">
                 <li class="list-inline-item me-4"><a class="link-secondary" href="#">Web design</a></li>
                 <li class="list-inline-item me-4"><a class="link-secondary" href="https://github.com/dtemir/connect-uis">Development</a></li>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/Articles-Cards-images.css' %}">
     <link rel="stylesheet" href="{% static 'css/Navbar-Centered-Brand-Dark-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 
 <body class="mx-auto">
@@ -31,11 +32,11 @@
     </nav>
     <div class="container py-4 py-xl-5" style="border-color: rgb(255,255,255);">
         <div class="row mb-5">
-            <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <div class="col-md-8 col-xl-6 text-center mx-auto text-on-bg">
                 <img class="rounded-circle" src="{{ user_profile.profileimg.url }}" width="100" height="100">
                 </br>
                 </br>
-                <hr class="mx-auto">
+                <div class="mx-auto line"></div>
                 <h2>{{user_profile.user.first_name}} {{user_profile.user.last_name}}</h2>
                 {% if user_profile.bio %}
                     <p>{{user_profile.bio}}</p>
@@ -67,12 +68,12 @@
 					<input type="hidden" value="{{ user_profile }}" name="followed" />
 
 					{% if user_profile.user.username == user.username %}
-					    <a class="btn btn-primary d-grid" style="color: #ffffff;background: #c8b18b;width: 100%;border-color: #c8b18b;" href="/settings">Settings</a>
+					    <button class="btn btn-primary uis-btn d-grid" style="color: #ffffff;width: 50%;" href="/settings">Settings</button>
 					{% else %}
-                        <button class="btn btn-primary d-grid" type="submit" style="color: #ffffff;background: #c8b18b;width: 100%;border-color: #c8b18b;">Follow</button>
+                        <button class="btn btn-primary uis-btn d-grid" type="submit" style="color: #ffffff;width: 50%;">Follow</button>
 					{% endif %}
 				</form>
-                <hr class="mx-auto">
+                <div class="mx-auto line"></div>
             </div>
         </div>
     </div>
@@ -80,7 +81,7 @@
         <div class="row">
             {% for post in user_posts reversed %}
             <div class="col col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                <div class="card">
+                <div class="card uis-card" style="margin-bottom: 16px">
                     {% if post.image %}
                         <img class="card-img-top w-100 d-block fit-cover" src="{{ post.image.url }}">
                     {% endif %}
@@ -94,7 +95,7 @@
                                     <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{{ post.profile.profileimg.url }}">
                                     <div>
                                         <p class="fw-bold mb-0">{{ post.profile.user.first_name }} {{ post.profile.user.last_name }}</p>
-                                        <p class="text-muted mb-0">{{ post.profile.bio }}</p>
+                                        <p class="text-muted-white mb-0">{{ post.profile.bio }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +120,7 @@
         </div>
     </div>
     <footer class="text-center">
-        <div class="container text-muted py-4 py-lg-5">
+        <div class="container text-muted-white py-4 py-lg-5">
             <ul class="list-inline">
                 <li class="list-inline-item me-4"><a class="link-secondary" href="#">Web design</a></li>
                 <li class="list-inline-item me-4"><a class="link-secondary" href="https://github.com/dtemir/connect-uis">Development</a></li>

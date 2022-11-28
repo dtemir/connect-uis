@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
+body {
+    background-image: url("https://www.uis.edu/sites/default/files/styles/min_1400/public/2020-11/Drone-Quad-subpage.jpg?itok=atekrf1J");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
+    font-family: 'Raleway';
+}
+
+h2 {
+    font-size: 48px;
+}
+
+.uis-card {
+    background-color: #036; color: white; border-radius: 16px;
+    box-shadow: 0px 4px 8px black;
+}
+
+.text-muted-white {
+    color: #b8bdc1 !important
+}
+
+.uis-btn {
+    display: none;color: #ffffff;margin: auto;margin-top: 10px;background: #0080ff;width: 50%;border-color: #0080ff; font-size: 18px;
+}
+
+.text-on-bg {
+    color: white; font-weight: 700; text-shadow: 2px 4px black;
+}
+
+footer {
+    background-color: white
+}
+
+.line {
+    border: 2px solid; margin-bottom: 16; margin-top: 16; width: 75%;
+}
