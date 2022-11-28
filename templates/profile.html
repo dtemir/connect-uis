@@ -37,6 +37,7 @@
                 </br>
                 </br>
                 <div class="mx-auto line"></div>
+                <br>
                 <h2>{{user_profile.user.first_name}} {{user_profile.user.last_name}}</h2>
                 {% if user_profile.bio %}
                     <p>{{user_profile.bio}}</p>
@@ -68,11 +69,12 @@
 					<input type="hidden" value="{{ user_profile }}" name="followed" />
 
 					{% if user_profile.user.username == user.username %}
-					    <button class="btn btn-primary uis-btn d-grid" style="color: #ffffff;width: 50%;" href="/settings">Settings</button>
+					    <a class="btn btn-primary uis-btn d-grid" style="color: #ffffff;width: 50%; text-shadow: none;" href="/settings">Settings</a>
 					{% else %}
                         <button class="btn btn-primary uis-btn d-grid" type="submit" style="color: #ffffff;width: 50%;">Follow</button>
 					{% endif %}
 				</form>
+                <br>
                 <div class="mx-auto line"></div>
             </div>
         </div>
