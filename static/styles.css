@@ -34,5 +34,6 @@ footer {
 }
 
 .line {
-    border: 2px solid; margin-bottom: 16; margin-top: 16; width: 75%;
+    border: 2px solid;
+    width: 75%;
 }
