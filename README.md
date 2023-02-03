@@ -1,5 +1,28 @@
-# connect-uis
-Connect at the University of Illinois Springfield!
+<p align="center">
+  <img src="docs/connect-uis-logo.png">
+</p>
+
+# Connect-UIS
+
+Connect at the University of Illinois Springfield! A social media website for UIS students, featuring:
+
+* Email verification with Twilio SendGrid (see more in [setup twilio](#setup-twillio-and-sendgrid-integration))
+* CRUD Back-end with Python's Django (create posts, profiles, leave upvotes, etc.)
+* HTTPS proxy with Nginx and WSGI server with Gunicorn (accessible with port 443 and SSL certificate)
+* Front-end with Bootstrap
+
+This a project built by Damir, Zach, Brad, and Alex in Fall 2022 to graduate from our undergraduate CS program.
+
+## Warning
+
+This project has been archived. It is no longer supported at **connect-uis.tech**.
+Unfortunately, I had to allocate my limited cloud resources elsewhere and therefore cannot keep hosting it.
+
+![architecture](docs/architecture.png)
+
+# Demo
+
+If you would like to see the demo, just head over to [docs](https://github.com/dtemir/connect-uis/tree/main/docs/demo.md).
 
 # Contribute
 
@@ -7,7 +30,7 @@ Take the following steps to setup the environment and start contributing to **co
 
 ## Setup Environment
 
-Create a Python virtual environment to keep your global libaries clean.
+Create a Python virtual environment to keep your global libraries clean.
 
 ```bash
 $ python3 -m venv venv
